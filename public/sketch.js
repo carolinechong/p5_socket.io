@@ -4,10 +4,10 @@ function setup() {
   createCanvas(600, 600);
   background(51);
 
-  // variable that connects to the server.
+  // Create a var that connects to the server
   socket = io.connect("http://localhost:3000");
 
-  // var socket handles receiving msgs
+  // Var socket handles RECEIVING msgs
   socket.on("mouse", newDrawing);
 }
 
@@ -17,10 +17,8 @@ function newDrawing(data) {
   ellipse(data.x, data.y, 25, 25);
 }
 
-// Function for sending msgs
+// Function for SENDING msgs
 function mouseDragged() {
-  console.log("Sending: " + mouseX + "," + mouseY);
-
   // Create a JS object with the data in it
   var data = {
     x: mouseX,
@@ -33,5 +31,3 @@ function mouseDragged() {
   fill(255);
   ellipse(mouseX, mouseY, 25, 25);
 }
-
-function draw() {}

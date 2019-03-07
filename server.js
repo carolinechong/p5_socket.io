@@ -3,14 +3,14 @@ var express = require("express");
 // Store in variable
 var app = express();
 
-// port 3000
+// Port 3000
 var server = app.listen(3000);
 
 // User to see all static files inside public folder
 app.use(express.static("public"));
 
+// To run in terminal: "nodemon server.js"
 console.log("My socket server is running");
-// To run in terminal: "node server.js"
 
 // Import socket library
 var socket = require("socket.io");
@@ -20,7 +20,7 @@ var io = socket(server);
 io.sockets.on("connection", newConnection);
 
 function newConnection(socket) {
-  console.log("new connection: " + socket.id);
+  console.log("New connection: " + socket.id);
 
   // If there is a message called "mouse", then trigger the following function.
   socket.on("mouse", mouseMsg);
@@ -29,8 +29,7 @@ function newConnection(socket) {
   function mouseMsg(data) {
     socket.broadcast.emit("mouse", data);
 
-    // Send msg to everyone, including client who sent it
-    // io.sockets.emit("mouse", data);
+    // JS object with x, y coordinates
     console.log(data);
   }
 }
